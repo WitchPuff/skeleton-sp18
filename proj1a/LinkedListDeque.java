@@ -1,3 +1,5 @@
+
+// package proj1a;
 public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
@@ -18,7 +20,6 @@ public class LinkedListDeque<T> {
             prev = pre;
             next = nex;
         }
-
     }
 
     public LinkedListDeque() {
@@ -91,9 +92,10 @@ public class LinkedListDeque<T> {
         if (index == 0) {
             return cur.item;
         } else if (index < size) {
-            return getRecursiveAt(cur.next, index-1);
+            return getRecursiveAt(cur.next, index - 1);
+        } else { 
+            return null;
         }
-        else return null;
     }
     public T getRecursive(int index) {
         if (index < size) {
