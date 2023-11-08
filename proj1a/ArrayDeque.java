@@ -1,7 +1,6 @@
 
-
 public class ArrayDeque<T> {
-    private T items[];
+    private T[] items;
     private int size;
     private int rear;
     private int head;
@@ -87,22 +86,30 @@ public class ArrayDeque<T> {
      * @return
      */
     public T removeLast() {
-        T last = items[rear];
-        rear = prev(rear);
-        size--;
-        checkSize();
-        return last;
+        if (!isEmpty()) {    
+            T last = items[rear];
+            rear = prev(rear);
+            size--;
+            checkSize();
+            return last;
+        } else {
+            return null;
+        }
     }
     /**
      * Removes the first item from items[0]
      * @return
      */
     public T removeFirst() {
-        T front = items[head];
-        head = next(head);
-        size--;
-        checkSize();
-        return front;
+        if (!isEmpty()) {
+            T front = items[head];
+            head = next(head);
+            size--;
+            checkSize();
+            return front;
+        } else {
+            return null;
+        }
     }
     /**
      * Gets the item from items[index]
