@@ -1,5 +1,5 @@
+package src;
 
-// package proj1a;
 public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
