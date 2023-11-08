@@ -34,15 +34,16 @@ public class ArrayDeque<T> {
         for (int i = 0; i < size; i++) {
             a[i] = get(i);
         }
+        items = a;
         head = 0;
-        rear = size-1;
+        rear = prev(size);
     }
     /** Check the size and expand or shrunk it to an appropriate size. */
     private void checkSize() {
         if (size == items.length) {
             expand(size * 2);
-        }else if ((double)size/items.length < 0.25) {
-            shrunk(size * 2);
+        } else if ((double) size / items.length < 0.25) {
+            shrunk(items.length / 2);
         }
     }
     /**
@@ -67,6 +68,7 @@ public class ArrayDeque<T> {
      */
     public void addLast(T val) {
         checkSize();
+        size++;
         rear = next(rear);
         items[rear] = val;
     }
@@ -76,6 +78,7 @@ public class ArrayDeque<T> {
      */
     public void addFirst(T val) {
         checkSize();
+        size++;
         head = prev(head);
         items[head] = val;
     }
@@ -129,6 +132,5 @@ public class ArrayDeque<T> {
         }
         System.out.println();
     }
-
 
 }
