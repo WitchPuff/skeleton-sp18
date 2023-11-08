@@ -21,14 +21,7 @@ public class ArrayDeque<T> {
     // }
     
     /** Resizes the underlying array to the target capacity. */
-    private void expand(int capacity) {
-        T[] a = (T[]) new Object[capacity];
-        System.arraycopy(items, 0, a, 0, size);
-        items = a;
-    }
-    /** Resizes the underlying array to the target capacity. */
-
-    private void shrunk(int capacity) {
+    private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         for (int i = 0; i < size; i++) {
             a[i] = get(i);
@@ -37,12 +30,12 @@ public class ArrayDeque<T> {
         head = 0;
         rear = prev(size);
     }
-    /** Check the size and expand or shrunk it to an appropriate size. */
+    /** Check the size and resize it to an appropriate size. */
     private void checkSize() {
         if (size == items.length) {
-            expand(size * 2);
+            resize(size * 2);
         } else if ((double) size / items.length < 0.25) {
-            shrunk(items.length / 2);
+            resize(1 + items.length / 2);
         }
     }
     /**
@@ -138,6 +131,24 @@ public class ArrayDeque<T> {
             System.out.println(get(i) + " ");
         }
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        a.addFirst(0);
+        a.addFirst(1);
+        a.addFirst(2);
+        a.addFirst(3);
+        System.out.println(a.removeLast() + " ");
+        a.addFirst(5);
+        System.out.println(a.removeLast() + " ");
+
+        a.addFirst(7);
+        a.addFirst(8);
+        a.addFirst(9);
+        System.out.println(a.removeLast() + " ");
+
+        a.printDeque();
     }
 
 }
