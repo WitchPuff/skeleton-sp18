@@ -133,22 +133,4 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addFirst(0);
-        a.addFirst(1);
-        a.addFirst(2);
-        a.addFirst(3);
-        System.out.println(a.removeLast() + " ");
-        a.addFirst(5);
-        System.out.println(a.removeLast() + " ");
-
-        a.addFirst(7);
-        a.addFirst(8);
-        a.addFirst(9);
-        System.out.println(a.removeLast() + " ");
-
-        a.printDeque();
-    }
-
 }
