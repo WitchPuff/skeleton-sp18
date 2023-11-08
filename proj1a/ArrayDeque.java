@@ -1,7 +1,7 @@
 
 
-public class ArrayDeque<Item> {
-    private Item items[];
+public class ArrayDeque<T> {
+    private T items[];
     private int size;
     private int rear;
     private int head;
@@ -10,27 +10,27 @@ public class ArrayDeque<Item> {
 
     /**Creates an empty list. */
     public ArrayDeque() {
-        items = (Item[]) new Object[DEFAULT_CAPACITY];
+        items = (T[]) new Object[DEFAULT_CAPACITY];
         size = 0;
         head = DEFAULT_CAPACITY / 2;
         rear = DEFAULT_CAPACITY / 2;
     }
 
     /** Deep copy. */
-    // public ArrayDeque(ArrayDeque<Item> other) {
+    // public ArrayDeque(ArrayDeque<T> other) {
     //     System.arraycopy(other.items, 0, items, 0, size);
     // }
     
     /** Resizes the underlying array to the target capacity. */
     private void expand(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         System.arraycopy(items, 0, a, 0, size);
         items = a;
     }
     /** Resizes the underlying array to the target capacity. */
 
     private void shrunk(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         for (int i = 0; i < size; i++) {
             a[i] = get(i);
         }
@@ -65,7 +65,7 @@ public class ArrayDeque<Item> {
      * Inserts val into items[size++].
      * @param val 
      */
-    public void addLast(Item val) {
+    public void addLast(T val) {
         checkSize();
         rear = next(rear);
         items[rear] = val;
@@ -74,7 +74,7 @@ public class ArrayDeque<Item> {
      * Inserts val into items[0]
      * @param val
      */
-    public void addFirst(Item val) {
+    public void addFirst(T val) {
         checkSize();
         head = prev(head);
         items[head] = val;
@@ -83,8 +83,8 @@ public class ArrayDeque<Item> {
      * Removes the last item from items[--size]
      * @return
      */
-    public Item removeLast() {
-        Item last = items[rear];
+    public T removeLast() {
+        T last = items[rear];
         rear = prev(rear);
         size--;
         checkSize();
@@ -94,8 +94,8 @@ public class ArrayDeque<Item> {
      * Removes the first item from items[0]
      * @return
      */
-    public Item removeFirst() {
-        Item front = items[head];
+    public T removeFirst() {
+        T front = items[head];
         head = next(head);
         size--;
         checkSize();
@@ -106,7 +106,7 @@ public class ArrayDeque<Item> {
      * @param index
      * @return
      */
-    public Item get(int index) {
+    public T get(int index) {
         if (index < size) {
             return items[(head + index) % items.length];
         } else {
